@@ -2,8 +2,8 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
 
 // Uses same placeholder links — edit in one place
 const footerLinks = {
-  github: '#', // TODO: Add your GitHub URL
-  linkedin: '#', // TODO: Add your LinkedIn URL
+  github: 'https://github.com/hiteshzambre', // TODO: Add your GitHub URL
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android', // TODO: Add your LinkedIn URL
   email: 'mailto:hiteshzambre9@gmail.com',
 };
 
@@ -14,10 +14,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer__container">
         <p className="footer__name">Hitesh Vijay Zambre</p>
-        <p className="footer__tagline">
-          Designed & built with <FaHeart className="footer__heart" /> using
-          React.
-        </p>
+        
         <div className="footer__socials">
           <a
             href={footerLinks.github}
@@ -39,9 +36,7 @@ function Footer() {
             <FaEnvelope />
           </a>
         </div>
-        <p className="footer__copy">
-          &copy; {year} Hitesh Zambre. All rights reserved.
-        </p>
+        
       </div>
     </footer>
   );

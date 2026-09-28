@@ -1,32 +1,66 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { useState } from 'react';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaDownload,
+  FaArrowRight,
+} from 'react-icons/fa';
 
 // ============================================
 // SOCIAL LINKS - Edit these with your actual URLs
 // ============================================
 const socialLinks = {
-  github: '#', // TODO: Add your GitHub profile URL
-  linkedin: '#', // TODO: Add your LinkedIn profile URL
+  github: 'https://github.com/hiteshzambre', // TODO: Add your GitHub profile URL
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android', // TODO: Add your LinkedIn profile URL
   email: 'mailto:hiteshzambre9@gmail.com',
 };
 
 function Hero() {
+  const [imgSrc, setImgSrc] = useState('/images/profile.jpeg');
+  const [imgFailed, setImgFailed] = useState(false);
+
+  const handleImageError = () => {
+    if (imgSrc === '/images/profile.jpeg') {
+      setImgSrc('/images/profile.jpg');
+    } else if (imgSrc === '/images/profile.jpg') {
+      setImgSrc('/images/profile.png');
+    } else {
+      setImgFailed(true);
+    }
+  };
+
   return (
     <section id="home" className="hero">
       <div className="hero__container">
         <div className="hero__content">
-          <p className="hero__greeting">Hi, I'm</p>
+          {/* Status Badge */}
+          <div className="hero__badge">
+            <span className="hero__badge-dot"></span>
+            <span>Available for Internships & Projects</span>
+          </div>
+
+          <p className="hero__greeting">Hello, I'm</p>
           <h1 className="hero__name">Hitesh Vijay Zambre</h1>
-          <h2 className="hero__headline">
-            Building Modern Digital Experiences with Code
-          </h2>
+
+          {/* Role Badges */}
+          <div className="hero__roles">
+            <span className="hero__role-tag">React Developer</span>
+            <span className="hero__role-tag">Python & Data Science</span>
+            <span className="hero__role-tag">BCA (9.27 CGPA)</span>
+          </div>
+
+
           <p className="hero__subtext">
-            Third-year BCA student passionate about software development,
-            React, Python, and data science.
+            Motivated third-year BCA student at Modern College, Pune, passionate about
+            crafting responsive, high-performance web applications and solving real-world
+            problems with modern programming and data science tools.
           </p>
 
+          {/* Action Buttons */}
           <div className="hero__buttons">
             <a href="#projects" className="hero__btn hero__btn--primary">
-              View My Projects
+              View My Projects <FaArrowRight className="hero__btn-icon" />
             </a>
             <a href="#contact" className="hero__btn hero__btn--secondary">
               Contact Me
@@ -34,12 +68,13 @@ function Hero() {
             <a
               href="/resume.pdf"
               download
-              className="hero__btn hero__btn--secondary"
+              className="hero__btn hero__btn--outline"
             >
               <FaDownload /> Resume
             </a>
           </div>
 
+          {/* Social Links */}
           <div className="hero__socials">
             <a
               href={socialLinks.github}
@@ -47,6 +82,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="hero__social-link"
               aria-label="GitHub"
+              title="GitHub Profile"
             >
               <FaGithub />
             </a>
@@ -56,6 +92,7 @@ function Hero() {
               rel="noopener noreferrer"
               className="hero__social-link"
               aria-label="LinkedIn"
+              title="LinkedIn Profile"
             >
               <FaLinkedin />
             </a>
@@ -63,16 +100,33 @@ function Hero() {
               href={socialLinks.email}
               className="hero__social-link"
               aria-label="Email"
+              title="Send an Email"
             >
               <FaEnvelope />
             </a>
           </div>
         </div>
 
+        {/* Profile Image Column */}
         <div className="hero__image-wrapper">
-          {/* TODO: Replace with your actual photo */}
-          {/* <img src="/images/profile.jpg" alt="Hitesh Zambre" className="hero__image" /> */}
-          <div className="hero__image-fallback">HZ</div>
+          {!imgFailed ? (
+            <div className="hero__image-frame">
+              <img
+                src={imgSrc}
+                alt="Hitesh Vijay Zambre"
+                className="hero__image"
+                onError={handleImageError}
+              />
+              <div className="hero__image-indicator" title="Actively Seeking Opportunities">
+                <span className="hero__indicator-dot"></span>
+                <span>Open to Work</span>
+              </div>
+            </div>
+          ) : (
+            <div className="hero__image-fallback">
+              <span>HZ</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
