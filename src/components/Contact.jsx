@@ -7,14 +7,11 @@ import {
   FaPaperPlane,
 } from 'react-icons/fa';
 
-// ============================================
-// CONTACT INFO - Edit these with your details
-// ============================================
 const contactInfo = {
   email: 'hiteshzambre9@gmail.com',
   phone: '9356876422',
-  github: '#', // TODO: Add your GitHub profile URL
-  linkedin: '#', // TODO: Add your LinkedIn profile URL
+  github: 'https://github.com/hiteshzambre',
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android',
 };
 
 function Contact() {
@@ -52,16 +49,6 @@ function Contact() {
       setErrors(validationErrors);
       return;
     }
-    // ============================================
-    // TODO: Integrate with email service
-    // Options: EmailJS, Formspree, Netlify Forms
-    // Example with Formspree:
-    //   fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData),
-    //   });
-    // ============================================
     console.log('Form submitted:', formData);
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });

@@ -1,8 +1,3 @@
-// ============================================
-// SKILLS DATA
-// Edit this file to add/update your skills
-// ============================================
-
 import {
   FaCode,
   FaPaintBrush,

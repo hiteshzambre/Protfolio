@@ -28,7 +28,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
-      // Scroll-spy active section detection
       const sections = ['home', 'about', 'skills', 'projects', 'education', 'contact'];
       const scrollPos = window.scrollY + 140;
 
@@ -45,7 +44,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -63,7 +61,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar__container">
-          {/* Logo with developer mark */}
           <a href="#home" className="navbar__logo" onClick={handleLinkClick}>
             <span className="navbar__logo-badge">H</span>
             <span className="navbar__logo-text">
@@ -71,7 +68,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
           <ul className="navbar__menu-desktop">
             {navLinks.map((link) => (
               <li key={link.name} className="navbar__item">
@@ -86,7 +82,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
             ))}
           </ul>
 
-          {/* Actions */}
           <div className="navbar__actions">
             <a
               href="/resume.pdf"
@@ -117,14 +112,12 @@ function Navbar({ darkMode, toggleDarkMode }) {
         </div>
       </nav>
 
-      {/* Mobile Drawer Backdrop */}
       <div
         className={`navbar__backdrop ${menuOpen ? 'active' : ''}`}
         onClick={() => setMenuOpen(false)}
         aria-hidden="true"
       />
 
-      {/* Mobile Drawer */}
       <div className={`navbar__drawer ${menuOpen ? 'active' : ''}`}>
         <div className="navbar__drawer-header">
           <a href="#home" className="navbar__logo" onClick={handleLinkClick}>

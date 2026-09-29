@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import projects from '../data/projects';
 
-// Helper to sanitize Windows backslashes and stray quotes
 function normalizeImagePath(path) {
   if (!path) return '';
   let clean = path.replace(/^["']|["']$/g, '').trim().replace(/\\/g, '/');

@@ -1,15 +1,12 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
-// Uses same placeholder links — edit in one place
 const footerLinks = {
-  github: 'https://github.com/hiteshzambre', // TODO: Add your GitHub URL
-  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android', // TODO: Add your LinkedIn URL
+  github: 'https://github.com/hiteshzambre',
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   email: 'mailto:hiteshzambre9@gmail.com',
 };
 
 function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -36,7 +33,6 @@ function Footer() {
             <FaEnvelope />
           </a>
         </div>
-        
       </div>
     </footer>
   );

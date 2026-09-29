@@ -7,12 +7,9 @@ import {
   FaArrowRight,
 } from 'react-icons/fa';
 
-// ============================================
-// SOCIAL LINKS - Edit these with your actual URLs
-// ============================================
 const socialLinks = {
-  github: 'https://github.com/hiteshzambre', // TODO: Add your GitHub profile URL
-  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android', // TODO: Add your LinkedIn profile URL
+  github: 'https://github.com/hiteshzambre',
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   email: 'mailto:hiteshzambre9@gmail.com',
 };
 
@@ -34,7 +31,6 @@ function Hero() {
     <section id="home" className="hero">
       <div className="hero__container">
         <div className="hero__content">
-          {/* Status Badge */}
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
             <span>Available for Internships & Projects</span>
@@ -43,13 +39,11 @@ function Hero() {
           <p className="hero__greeting">Hello, I'm</p>
           <h1 className="hero__name">Hitesh Vijay Zambre</h1>
 
-          {/* Role Badges */}
           <div className="hero__roles">
             <span className="hero__role-tag">React Developer</span>
             <span className="hero__role-tag">Python & Data Science</span>
             <span className="hero__role-tag">BCA (9.27 CGPA)</span>
           </div>
-
 
           <p className="hero__subtext">
             Motivated third-year BCA student at Modern College, Pune, passionate about
@@ -57,7 +51,6 @@ function Hero() {
             problems with modern programming and data science tools.
           </p>
 
-          {/* Action Buttons */}
           <div className="hero__buttons">
             <a href="#projects" className="hero__btn hero__btn--primary">
               View My Projects <FaArrowRight className="hero__btn-icon" />
@@ -74,7 +67,6 @@ function Hero() {
             </a>
           </div>
 
-          {/* Social Links */}
           <div className="hero__socials">
             <a
               href={socialLinks.github}
@@ -107,7 +99,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Profile Image Column */}
         <div className="hero__image-wrapper">
           {!imgFailed ? (
             <div className="hero__image-frame">
