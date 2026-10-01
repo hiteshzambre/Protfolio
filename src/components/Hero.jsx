@@ -14,28 +14,12 @@ const socialLinks = {
 };
 
 function Hero() {
-  const [imgSrc, setImgSrc] = useState('/images/profile.jpeg');
   const [imgFailed, setImgFailed] = useState(false);
-
-  const handleImageError = () => {
-    if (imgSrc === '/images/profile.jpeg') {
-      setImgSrc('/images/profile.jpg');
-    } else if (imgSrc === '/images/profile.jpg') {
-      setImgSrc('/images/profile.png');
-    } else {
-      setImgFailed(true);
-    }
-  };
 
   return (
     <section id="home" className="hero">
       <div className="hero__container">
         <div className="hero__content">
-          <div className="hero__badge">
-            <span className="hero__badge-dot"></span>
-            <span>Available for Internships & Projects</span>
-          </div>
-
           <p className="hero__greeting">Hello, I'm</p>
           <h1 className="hero__name">Hitesh Vijay Zambre</h1>
 
@@ -47,13 +31,13 @@ function Hero() {
 
           <p className="hero__subtext">
             Motivated third-year BCA student at Modern College, Pune, passionate about
-            crafting responsive, high-performance web applications and solving real-world
-            problems with modern programming and data science tools.
+            crafting responsive, user-friendly web applications and solving problems with
+            modern programming and data science tools.
           </p>
 
           <div className="hero__buttons">
             <a href="#projects" className="hero__btn hero__btn--primary">
-              View My Projects <FaArrowRight className="hero__btn-icon" />
+              View My Projects <FaArrowRight />
             </a>
             <a href="#contact" className="hero__btn hero__btn--secondary">
               Contact Me
@@ -74,7 +58,6 @@ function Hero() {
               rel="noopener noreferrer"
               className="hero__social-link"
               aria-label="GitHub"
-              title="GitHub Profile"
             >
               <FaGithub />
             </a>
@@ -84,7 +67,6 @@ function Hero() {
               rel="noopener noreferrer"
               className="hero__social-link"
               aria-label="LinkedIn"
-              title="LinkedIn Profile"
             >
               <FaLinkedin />
             </a>
@@ -92,7 +74,6 @@ function Hero() {
               href={socialLinks.email}
               className="hero__social-link"
               aria-label="Email"
-              title="Send an Email"
             >
               <FaEnvelope />
             </a>
@@ -101,22 +82,14 @@ function Hero() {
 
         <div className="hero__image-wrapper">
           {!imgFailed ? (
-            <div className="hero__image-frame">
-              <img
-                src={imgSrc}
-                alt="Hitesh Vijay Zambre"
-                className="hero__image"
-                onError={handleImageError}
-              />
-              <div className="hero__image-indicator" title="Actively Seeking Opportunities">
-                <span className="hero__indicator-dot"></span>
-                <span>Open to Work</span>
-              </div>
-            </div>
+            <img
+              src="/images/profile.jpeg"
+              alt="Hitesh Vijay Zambre"
+              className="hero__image"
+              onError={() => setImgFailed(true)}
+            />
           ) : (
-            <div className="hero__image-fallback">
-              <span>HZ</span>
-            </div>
+            <div className="hero__image-fallback">HZ</div>
           )}
         </div>
       </div>
