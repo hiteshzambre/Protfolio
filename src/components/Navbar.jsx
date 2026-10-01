@@ -16,7 +16,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -25,41 +25,46 @@ function Navbar({ darkMode, toggleDarkMode }) {
   const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
         <a href="#home" className="navbar__logo">
-          Hitesh<span className="navbar__logo-dot">.</span>
+          <span className="navbar__logo-symbol">&lt;</span>
+          Hitesh
+          <span className="navbar__logo-symbol">/&gt;</span>
         </a>
 
-        <ul className={`navbar__menu ${menuOpen ? 'active' : ''}`}>
-          {navLinks.map((link) => (
-            <li key={link.name} className="navbar__item">
-              <a
-                href={link.href}
-                className="navbar__link"
-                onClick={handleLinkClick}
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-          <li className="navbar__item navbar__item--mobile">
+        <nav className={`navbar__nav ${menuOpen ? 'navbar__nav--open' : ''}`}>
+          <ul className="navbar__menu">
+            {navLinks.map((link) => (
+              <li key={link.name} className="navbar__item">
+                <a
+                  href={link.href}
+                  className="navbar__link"
+                  onClick={handleLinkClick}
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="navbar__mobile-actions">
             <a
               href="/resume.pdf"
               download
-              className="navbar__resume-btn"
+              className="btn btn--primary btn--sm"
               onClick={handleLinkClick}
             >
               <FaDownload /> Resume
             </a>
-          </li>
-        </ul>
+          </div>
+        </nav>
 
         <div className="navbar__actions">
           <a
             href="/resume.pdf"
             download
-            className="navbar__resume-btn navbar__resume-btn--desktop"
+            className="btn btn--outline btn--sm navbar__resume-desktop"
           >
             <FaDownload /> Resume
           </a>
@@ -81,7 +86,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
           </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
 

@@ -2,19 +2,18 @@ import { useState } from 'react';
 import {
   FaEnvelope,
   FaPhone,
+  FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
   FaPaperPlane,
 } from 'react-icons/fa';
 
-// ============================================
-// CONTACT INFO - Edit these with your details
-// ============================================
 const contactInfo = {
   email: 'hiteshzambre9@gmail.com',
   phone: '9356876422',
-  github: 'https://github.com/hiteshzambre', // TODO: Add your GitHub profile URL
-  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android', // TODO: Add your LinkedIn profile URL
+  location: 'Pune, Maharashtra, India',
+  github: 'https://github.com/hiteshzambre',
+  linkedin: 'https://www.linkedin.com/in/hitesh-zambre-0749a9396?utm_source=share_via&utm_content=profile&utm_medium=member_android',
 };
 
 function Contact() {
@@ -28,13 +27,13 @@ function Contact() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required.';
+    if (!formData.name.trim()) newErrors.name = 'Please enter your name.';
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required.';
+      newErrors.email = 'Please enter your email.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email.';
+      newErrors.email = 'Please enter a valid email address.';
     }
-    if (!formData.message.trim()) newErrors.message = 'Message is required.';
+    if (!formData.message.trim()) newErrors.message = 'Please enter your message.';
     return newErrors;
   };
 
@@ -52,48 +51,57 @@ function Contact() {
       setErrors(validationErrors);
       return;
     }
-    // ============================================
-    // TODO: Integrate with email service
-    // Options: EmailJS, Formspree, Netlify Forms
-    // Example with Formspree:
-    //   fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData),
-    //   });
-    // ============================================
-    console.log('Form submitted:', formData);
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
     setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
-    <section id="contact" className="contact">
-      <h2 className="section__title">Contact Me</h2>
-      <div className="contact__container">
+    <section id="contact" className="section">
+      <div className="section__header">
+        <span className="section__eyebrow">Contact</span>
+        <h2 className="section__title">Get In Touch</h2>
+      </div>
+
+      <div className="contact__layout">
         <div className="contact__info">
-          <h3 className="contact__info-title">Get in Touch</h3>
-          <p className="contact__info-text">
-            Feel free to reach out for collaborations, opportunities, or
-            just to say hello!
+          <p className="contact__lead">
+            I am available for internships, junior developer roles, and project collaborations.
+            Feel free to contact me via email or phone.
           </p>
-          <div className="contact__details">
-            <a
-              href={`mailto:${contactInfo.email}`}
-              className="contact__detail"
-            >
-              <FaEnvelope className="contact__detail-icon" />
-              <span>{contactInfo.email}</span>
+
+          <div className="contact__cards">
+            <a href={`mailto:${contactInfo.email}`} className="contact__item">
+              <span className="contact__item-icon">
+                <FaEnvelope />
+              </span>
+              <div>
+                <span className="contact__item-label">Email</span>
+                <span className="contact__item-value">{contactInfo.email}</span>
+              </div>
             </a>
-            <a
-              href={`tel:${contactInfo.phone}`}
-              className="contact__detail"
-            >
-              <FaPhone className="contact__detail-icon" />
-              <span>+91 {contactInfo.phone}</span>
+
+            <a href={`tel:${contactInfo.phone}`} className="contact__item">
+              <span className="contact__item-icon">
+                <FaPhone />
+              </span>
+              <div>
+                <span className="contact__item-label">Phone</span>
+                <span className="contact__item-value">+91 {contactInfo.phone}</span>
+              </div>
             </a>
+
+            <div className="contact__item">
+              <span className="contact__item-icon">
+                <FaMapMarkerAlt />
+              </span>
+              <div>
+                <span className="contact__item-label">Location</span>
+                <span className="contact__item-value">{contactInfo.location}</span>
+              </div>
+            </div>
           </div>
+
           <div className="contact__socials">
             <a
               href={contactInfo.github}
@@ -124,64 +132,64 @@ function Contact() {
         </div>
 
         <form className="contact__form" onSubmit={handleSubmit} noValidate>
-          <div className="contact__field">
-            <label htmlFor="name" className="contact__label">
-              Name
+          <div className="form-group">
+            <label htmlFor="name" className="form-label">
+              Your Name
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              className={`contact__input ${errors.name ? 'contact__input--error' : ''}`}
-              placeholder="Your Name"
+              className={`form-input ${errors.name ? 'form-input--error' : ''}`}
+              placeholder="e.g. John Doe"
               value={formData.name}
               onChange={handleChange}
             />
-            {errors.name && (
-              <span className="contact__error">{errors.name}</span>
-            )}
+            {errors.name && <span className="form-error">{errors.name}</span>}
           </div>
-          <div className="contact__field">
-            <label htmlFor="email" className="contact__label">
-              Email
+
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Your Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className={`contact__input ${errors.email ? 'contact__input--error' : ''}`}
-              placeholder="your@email.com"
+              className={`form-input ${errors.email ? 'form-input--error' : ''}`}
+              placeholder="e.g. john@example.com"
               value={formData.email}
               onChange={handleChange}
             />
-            {errors.email && (
-              <span className="contact__error">{errors.email}</span>
-            )}
+            {errors.email && <span className="form-error">{errors.email}</span>}
           </div>
-          <div className="contact__field">
-            <label htmlFor="message" className="contact__label">
+
+          <div className="form-group">
+            <label htmlFor="message" className="form-label">
               Message
             </label>
             <textarea
               id="message"
               name="message"
               rows="5"
-              className={`contact__input contact__textarea ${errors.message ? 'contact__input--error' : ''}`}
+              className={`form-input form-textarea ${errors.message ? 'form-input--error' : ''}`}
               placeholder="Your message..."
               value={formData.message}
               onChange={handleChange}
             />
             {errors.message && (
-              <span className="contact__error">{errors.message}</span>
+              <span className="form-error">{errors.message}</span>
             )}
           </div>
-          <button type="submit" className="contact__submit">
+
+          <button type="submit" className="btn btn--primary btn--full">
             <FaPaperPlane /> Send Message
           </button>
+
           {submitted && (
-            <p className="contact__success">
-              Thank you! Your message has been sent.
-            </p>
+            <div className="form-success">
+              Thank you! Your message has been sent successfully.
+            </div>
           )}
         </form>
       </div>

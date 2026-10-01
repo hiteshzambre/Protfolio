@@ -5,6 +5,7 @@ import {
   FaEnvelope,
   FaDownload,
   FaArrowRight,
+  FaMapMarkerAlt,
 } from 'react-icons/fa';
 
 const socialLinks = {
@@ -20,32 +21,30 @@ function Hero() {
     <section id="home" className="hero">
       <div className="hero__container">
         <div className="hero__content">
-          <p className="hero__greeting">Hello, I'm</p>
-          <h1 className="hero__name">Hitesh Vijay Zambre</h1>
-
-          <div className="hero__roles">
-            <span className="hero__role-tag">React Developer</span>
-            <span className="hero__role-tag">Python & Data Science</span>
-            <span className="hero__role-tag">BCA (9.27 CGPA)</span>
+          <div className="hero__status">
+            <span className="hero__status-dot"></span>
+            Available for Internships & Immediate Hire
           </div>
 
-          <p className="hero__subtext">
-            Motivated third-year BCA student at Modern College, Pune, passionate about
-            crafting responsive, user-friendly web applications and solving problems with
-            modern programming and data science tools.
+          <h1 className="hero__name">Hitesh Vijay Zambre</h1>
+          <h2 className="hero__title">Frontend Developer & Python Enthusiast</h2>
+
+          <p className="hero__bio">
+            Third-year BCA student at Modern College, Pune with a 9.27 CGPA.
+            Focused on building clean, high-performance web applications and solving real-world challenges through code.
           </p>
 
           <div className="hero__buttons">
-            <a href="#projects" className="hero__btn hero__btn--primary">
-              View My Projects <FaArrowRight />
+            <a href="#projects" className="btn btn--primary">
+              View My Work <FaArrowRight />
             </a>
-            <a href="#contact" className="hero__btn hero__btn--secondary">
+            <a href="#contact" className="btn btn--secondary">
               Contact Me
             </a>
             <a
               href="/resume.pdf"
               download
-              className="hero__btn hero__btn--outline"
+              className="btn btn--outline"
             >
               <FaDownload /> Resume
             </a>
@@ -80,17 +79,23 @@ function Hero() {
           </div>
         </div>
 
-        <div className="hero__image-wrapper">
-          {!imgFailed ? (
-            <img
-              src="/images/profile.jpeg"
-              alt="Hitesh Vijay Zambre"
-              className="hero__image"
-              onError={() => setImgFailed(true)}
-            />
-          ) : (
-            <div className="hero__image-fallback">HZ</div>
-          )}
+        <div className="hero__media">
+          <div className="hero__photo-card">
+            {!imgFailed ? (
+              <img
+                src="/images/profile.jpeg"
+                alt="Hitesh Vijay Zambre"
+                className="hero__photo"
+                onError={() => setImgFailed(true)}
+              />
+            ) : (
+              <div className="hero__fallback">HZ</div>
+            )}
+            <div className="hero__photo-badge">
+              <FaMapMarkerAlt />
+              <span>Pune, India</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

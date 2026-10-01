@@ -11,13 +11,13 @@ function normalizeImagePath(path) {
   return clean;
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, isFeatured }) {
   const [imgError, setImgError] = useState(false);
   const cleanImage = normalizeImagePath(project.image);
 
   return (
-    <div className="project-card">
-      <div className="project-card__image">
+    <article className={`project-card ${isFeatured ? 'project-card--featured' : ''}`}>
+      <div className="project-card__image-wrap">
         {cleanImage && !imgError ? (
           <img
             src={cleanImage}
@@ -33,8 +33,9 @@ function ProjectCard({ project }) {
       </div>
 
       <div className="project-card__content">
+        <span className="project-card__badge">Featured Project</span>
         <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__description">{project.description}</p>
+        <p className="project-card__desc">{project.description}</p>
 
         <div className="project-card__tags">
           {project.technologies.map((tech) => (
@@ -44,40 +45,48 @@ function ProjectCard({ project }) {
           ))}
         </div>
 
-        <div className="project-card__links">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card__link project-card__link--github"
-            >
-              <FaGithub /> GitHub
-            </a>
-          )}
+        <div className="project-card__actions">
           {project.live && (
             <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-card__link project-card__link--live"
+              className="btn btn--primary btn--sm"
             >
               <FaExternalLinkAlt /> Live Demo
             </a>
           )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline btn--sm"
+            >
+              <FaGithub /> View Code
+            </a>
+          )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
 function Projects() {
   return (
-    <section id="projects" className="projects">
-      <h2 className="section__title">Projects</h2>
-      <div className="projects__container">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+    <section id="projects" className="section">
+      <div className="section__header">
+        <span className="section__eyebrow">Portfolio</span>
+        <h2 className="section__title">Featured Projects</h2>
+      </div>
+
+      <div className="projects__list">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            isFeatured={projects.length === 1 || index === 0}
+          />
         ))}
       </div>
     </section>

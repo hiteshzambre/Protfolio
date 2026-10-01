@@ -10,13 +10,16 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <p className="footer__name">Hitesh Vijay Zambre</p>
-        
+        <p className="footer__copy">
+          Designed & Built by <strong>Hitesh Vijay Zambre</strong>
+        </p>
+
         <div className="footer__socials">
           <a
             href={footerLinks.github}
             target="_blank"
             rel="noopener noreferrer"
+            className="footer__link"
             aria-label="GitHub"
           >
             <FaGithub />
@@ -25,11 +28,16 @@ function Footer() {
             href={footerLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            className="footer__link"
             aria-label="LinkedIn"
           >
             <FaLinkedin />
           </a>
-          <a href={footerLinks.email} aria-label="Email">
+          <a
+            href={footerLinks.email}
+            className="footer__link"
+            aria-label="Email"
+          >
             <FaEnvelope />
           </a>
         </div>
